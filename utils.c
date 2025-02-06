@@ -5,46 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: peferrei <peferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/21 15:17:42 by peferrei          #+#    #+#             */
-/*   Updated: 2025/01/21 15:17:44 by peferrei         ###   ########.fr       */
+/*   Created: 2024/09/17 11:28:43 by ptorrao-          #+#    #+#             */
+/*   Updated: 2025/02/04 15:35:56 by peferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-void	ft_print_error(char *str)
-{
-	printf("%s\n", str);
-	exit(EXIT_FAILURE);
-}
-
-void	ft_print_message(int nbr, int time, char *philo)
-{
-	if (nbr == 1)
-		printf("%d %s has taken a fork\n", time, philo);
-	else if (nbr == 2)
-		printf("%d %s is eating\n", time, philo);
-	else if (nbr == 3)
-		printf("%d %s is sleeping\n", time, philo);
-	else if (nbr == 4)
-		printf("%d %s is thinking\n", time, philo);
-	else if (nbr == 5)
-		printf("%d %s died\n", time, philo);
-}
-
-int	ft_strcmp(char *s1, char *s2)
-{
-	int	i;
-
-	i = 0;
-	while (s1[i] || s2[i])
-	{
-		if (s1[i] != s2[i])
-			return (s1[i] - s2[i]);
-		i++;
-	}
-	return (0);
-}
 
 int	ft_isdigit(int c)
 {
@@ -55,7 +21,7 @@ int	ft_isdigit(int c)
 	return (1);
 }
 
-int	ft_atol(const char *str)
+long	ft_atol(const char *str)
 {
 	long	number;
 	long	minus;
@@ -81,4 +47,23 @@ int	ft_atol(const char *str)
 		str++;
 	}
 	return (number * minus);
+}
+
+size_t	ft_strlen(const char *str)
+{
+	size_t	i;
+
+	i = 0;
+	while (str[i])
+		i ++;
+	return (i);
+}
+
+void	ft_wait(t_philo *philo, long time)
+{
+	if ((ft_get_time() + time) >= (long)philo->main->time_to_die
+		+ ft_get_time())
+		usleep(((long)philo->main->time_to_die) * 999);
+	else
+		usleep(time * 999);
 }

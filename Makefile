@@ -1,7 +1,17 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: peferrei <peferrei@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/09/16 11:02:10 by ptorrao-          #+#    #+#              #
+#    Updated: 2025/02/04 15:37:20 by peferrei         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-
-SRCS            = philosophers.c checks.c utils.c inits.c handlers.c \
-					philo_set_get.c philo_start.c
+SRCS            = main.c init.c utils.c philosophers.c free.c \
+					routine.c checks.c prints.c
 
 OBJS            = $(SRCS:.c=.o)
 
@@ -9,7 +19,7 @@ CC              = cc
 
 RM              = rm -f
 
-CFLAGS          =  -g -Wall -Wextra -Werror -pthread #-fsanitize=thread
+CFLAGS          =  -g -Wall -Wextra -Werror -pthread -fsanitize=thread
 
 NAME            = philo
 
